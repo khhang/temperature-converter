@@ -29,6 +29,7 @@ public class ConversionSteps {
     @Given("^I want to  convert (\\d+)\\.(\\d+) degree Fahrenheit to Celsius$")
     public void i_want_to_convert_degree_Fahrenheit_to_Celsius(int arg1, int arg2) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
