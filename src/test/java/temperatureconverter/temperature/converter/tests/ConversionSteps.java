@@ -14,6 +14,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import temperatureconverter.temperature.converter.Google;
 import temperatureconverter.temperature.converter.TemperatureConverterPage;
 
@@ -33,7 +34,7 @@ public class ConversionSteps {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        googlePage = new Google(driver);
+        googlePage = PageFactory.initElements(driver, Google.class);
         temperatureConverterPage = googlePage.goToTemperatureConversionPage();
     }
 

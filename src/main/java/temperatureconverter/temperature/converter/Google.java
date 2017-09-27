@@ -7,6 +7,9 @@ package temperatureconverter.temperature.converter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +20,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Google {
     private WebDriver driver;
     private String baseURL;
+    
+    @FindBy(id = "lst-ib")
+    private WebElement searchBox;
+    
+    @FindBy(name = "btnK")
+    private WebElement searchBtn;
 
     public Google(WebDriver driver){
         this.driver = driver;
@@ -28,11 +37,11 @@ public class Google {
         }
     }
     public TemperatureConverterPage goToTemperatureConversionPage(){
-        driver.findElement(By.id("lst-ib")).clear();
-        driver.findElement(By.id("lst-ib")).sendKeys("from fahrenheit to celsius");
-        driver.findElement(By.name("btnK")).click();
+        searchBox.clear();
+        searchBox.sendKeys("from fahrenheit to celsius");
+        searchBtn.click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
-        return new TemperatureConverterPage(driver);
+        return PageFactory.initElements(driver, TemperatureConverterPage.class);
     }
 }

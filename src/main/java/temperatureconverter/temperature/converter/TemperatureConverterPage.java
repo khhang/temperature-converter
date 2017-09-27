@@ -7,6 +7,8 @@ package temperatureconverter.temperature.converter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  *
@@ -14,6 +16,12 @@ import org.openqa.selenium.WebDriver;
  */
 public class TemperatureConverterPage {
     private WebDriver driver;
+    
+    @FindBy(xpath = ".//*[@id='_Aif']/input")
+    private WebElement fahrenheitInput;
+    
+    @FindBy(xpath = ".//*[@id='_Cif']/input")
+    private WebElement celsiusInput;
     
     public TemperatureConverterPage(WebDriver driver){
         this.driver = driver;
@@ -25,12 +33,15 @@ public class TemperatureConverterPage {
     
     public void inputFahrenheit(double valueOfFahrenheit){
         String s = Double.toString(valueOfFahrenheit);
-        driver.findElement(By.xpath(".//*[@id='_Aif']/input")).clear();
-        driver.findElement(By.xpath(".//*[@id='_Aif']/input")).sendKeys(s);
+        fahrenheitInput.clear();
+        fahrenheitInput.sendKeys(s);
+//        driver.findElement(By.xpath(".//*[@id='_Aif']/input")).clear();
+//        driver.findElement(By.xpath(".//*[@id='_Aif']/input")).sendKeys(s);
     }
     
     public String actualResult(){
-        String valueOfCelsius = driver.findElement(By.xpath(".//*[@id='_Cif']/input")).getAttribute("value");
+        String valueOfCelsius = celsiusInput.getAttribute("value");
+//        String valueOfCelsius = driver.findElement(By.xpath(".//*[@id='_Cif']/input")).getAttribute("value");
         System.out.println(valueOfCelsius);
         return valueOfCelsius;
     }
