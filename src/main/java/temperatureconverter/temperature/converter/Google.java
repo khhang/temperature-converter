@@ -30,7 +30,7 @@ public class Google {
     public TemperatureConverterPage goToTemperatureConversionPage(){
         driver.findElement(By.id("lst-ib")).clear();
         driver.findElement(By.id("lst-ib")).sendKeys("from fahrenheit to celsius");
-        driver.findElement(By.name("btnG")).click();
+        driver.findElement(By.name("btnK")).click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
         return new TemperatureConverterPage(driver);
